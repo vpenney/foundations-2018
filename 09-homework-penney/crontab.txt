@@ -1,0 +1,24 @@
+# connect to server
+ssh -i ~/.ssh/foundations_key root@198.199.88.250
+
+# send files to server
+scp -i ~/.ssh/foundations_key ~/Downloads/09-homework-penney.py root@198.199.88.250:dark_sky_email_updates.py
+scp -i ~/.ssh/foundations_key ~/Downloads/09-homework-scraping-penney.py root@198.199.88.250:wash_post_updates.py
+
+# this is for the weather update
+# in the server shell:
+crontab -e
+0 8 * * * dark_sky_email_updates.py
+cntrl + x
+y
+enter
+
+# this is for the daily Washington Post web scrape emails
+crontab -e
+0 6 * * * * wash_post_updates.py
+0 12 * * * * wash_post_updates.py
+0 18 * * * * wash_post_updates.py
+0 24 * * * * wash_post_updates.py
+cntrl + x
+y
+enter
